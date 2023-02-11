@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,10 +20,13 @@ public class Asteroid : MonoBehaviour
 	/// </summary>
 	void Start()
 	{
+        Array directions = Enum.GetValues(typeof(Direction));
+        int randomDirectionIndex = UnityEngine.Random.Range(0, directions.Length);
+        Direction randomDirection = (Direction)directions.GetValue(randomDirectionIndex);
 
         // set random sprite for asteroid
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        int spriteNumber = Random.Range(0, 3);
+        int spriteNumber = UnityEngine.Random.Range(0, 3);
         if (spriteNumber < 1)
         {
             spriteRenderer.sprite = asteroidSprite0;
@@ -42,9 +46,9 @@ public class Asteroid : MonoBehaviour
         // apply impulse force to get game object moving
         const float MinImpulseForce = 3f;
         const float MaxImpulseForce = 5f;
-        //float angle = Random.Range(0, 2 * Mathf.PI);
+        //float angle = .UnityEngine.Random.Range(0, 2 * Mathf.PI);
 
-        float randomAngle = Random.Range(0, 30) * Mathf.Deg2Rad;
+        float randomAngle = UnityEngine.Random.Range(0, 30) * Mathf.Deg2Rad;
         float baseAngle = 0;
 
         switch(direction)
@@ -67,7 +71,7 @@ public class Asteroid : MonoBehaviour
 
         Vector2 moveDirection = new Vector2(
             Mathf.Cos(angle), Mathf.Sin(angle));
-        float magnitude = Random.Range(MinImpulseForce, MaxImpulseForce);
+        float magnitude = UnityEngine.Random.Range(MinImpulseForce, MaxImpulseForce);
         GetComponent<Rigidbody2D>().AddForce(
             moveDirection * magnitude,
             ForceMode2D.Impulse);
