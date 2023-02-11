@@ -19,16 +19,6 @@ public class Asteroid : MonoBehaviour
 	/// </summary>
 	void Start()
 	{
-        // apply impulse force to get game object moving
-        const float MinImpulseForce = 3f;
-        const float MaxImpulseForce = 5f;
-        float angle = Random.Range(0, 2 * Mathf.PI);
-        Vector2 direction = new Vector2(
-            Mathf.Cos(angle), Mathf.Sin(angle));
-        float magnitude = Random.Range(MinImpulseForce, MaxImpulseForce);
-        GetComponent<Rigidbody2D>().AddForce(
-            direction * magnitude,
-            ForceMode2D.Impulse);
 
         // set random sprite for asteroid
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -46,4 +36,41 @@ public class Asteroid : MonoBehaviour
             spriteRenderer.sprite = asteroidSprite2;
         }
 	}
+
+    public void Initialize(Direction direction)
+    {
+        // apply impulse force to get game object moving
+        const float MinImpulseForce = 3f;
+        const float MaxImpulseForce = 5f;
+        //float angle = Random.Range(0, 2 * Mathf.PI);
+
+        float randomAngle = Random.Range(0, 30) * Mathf.Deg2Rad;
+        float baseAngle = 0;
+
+        switch(direction)
+        {
+            case Direction.Up:
+                baseAngle = 75 * Mathf.Deg2Rad;
+                break;
+            case Direction.Right:
+                baseAngle = 165 * Mathf.Deg2Rad;
+                break;
+            case Direction.Down:
+                baseAngle = 255 * Mathf.Deg2Rad;
+                break;
+            case Direction.Left:
+                baseAngle = 345 * Mathf.Deg2Rad;
+                break;
+        }
+
+        float angle = randomAngle + baseAngle;
+
+        Vector2 moveDirection = new Vector2(
+            Mathf.Cos(angle), Mathf.Sin(angle));
+        float magnitude = Random.Range(MinImpulseForce, MaxImpulseForce);
+        GetComponent<Rigidbody2D>().AddForce(
+            moveDirection * magnitude,
+            ForceMode2D.Impulse);
+
+    }
 }
