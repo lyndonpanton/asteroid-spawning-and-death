@@ -41,7 +41,7 @@ public class Asteroid : MonoBehaviour
         }
 	}
 
-    public void Initialize(Direction direction)
+    public void Initialize(Direction direction, Vector3 location)
     {
         // apply impulse force to get game object moving
         const float MinImpulseForce = 3f;
@@ -57,13 +57,13 @@ public class Asteroid : MonoBehaviour
                 baseAngle = 75 * Mathf.Deg2Rad;
                 break;
             case Direction.Right:
-                baseAngle = 165 * Mathf.Deg2Rad;
+                baseAngle = 345 * Mathf.Deg2Rad;
                 break;
             case Direction.Down:
                 baseAngle = 255 * Mathf.Deg2Rad;
                 break;
             case Direction.Left:
-                baseAngle = 345 * Mathf.Deg2Rad;
+                baseAngle = 165 * Mathf.Deg2Rad;
                 break;
         }
 
@@ -75,6 +75,8 @@ public class Asteroid : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(
             moveDirection * magnitude,
             ForceMode2D.Impulse);
+
+        transform.position = location;
 
     }
 }
