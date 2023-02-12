@@ -33,28 +33,11 @@ public class AsteroidSpawner : MonoBehaviour
             leftRock
         };
 
-        //upRockCC2d = upRock.GetComponent<CircleCollider2D>();
-        //rightRockCC2d = rightRock.GetComponent<CircleCollider2D>();
-        //downRockCC2d = downRock.GetComponent<CircleCollider2D>();
-        //leftRockCC2d = leftRock.GetComponent<CircleCollider2D>();
-
         prefabAsteroid = Instantiate(prefabAsteroid) as GameObject;
         prefabAsteroidCC2d = prefabAsteroid.GetComponent<CircleCollider2D>();
 
         float radius = prefabAsteroidCC2d.radius;
         Destroy(prefabAsteroid);
-
-
-
-
-        //upRock.GetComponent<Asteroid>().Initialize(
-        //    Direction.Down,
-        //    new Vector3(
-        //        ScreenUtils.ScreenLeft / 2 + radius,
-        //        ScreenUtils.ScreenTop,
-        //        -Camera.main.transform.position.z
-        //    )
-        //);
 
         upRock.GetComponent<Asteroid>().Initialize(
             Direction.Down,
