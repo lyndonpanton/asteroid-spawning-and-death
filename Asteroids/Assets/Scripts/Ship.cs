@@ -57,4 +57,13 @@ public class Ship : MonoBehaviour
                 ForceMode2D.Force);
         }
     }
+
+    /// <summary>
+    /// Destroys the ship when in collides with an asteroid
+    /// </summary>
+    /// <param name="collision"></param>
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
