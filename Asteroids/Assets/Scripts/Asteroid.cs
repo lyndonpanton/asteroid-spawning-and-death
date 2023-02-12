@@ -46,9 +46,6 @@ public class Asteroid : MonoBehaviour
         // apply impulse force to get game object moving
         const float MinImpulseForce = 3f;
         const float MaxImpulseForce = 5f;
-        //float angle = .UnityEngine.Random.Range(0, 2 * Mathf.PI);
-
-        float randomAngle = UnityEngine.Random.Range(0, 30) * Mathf.Deg2Rad;
         float baseAngle = 0;
 
         switch(direction)
@@ -67,6 +64,7 @@ public class Asteroid : MonoBehaviour
                 break;
         }
 
+        float randomAngle = UnityEngine.Random.Range(0, 30) * Mathf.Deg2Rad;
         float angle = randomAngle + baseAngle;
 
         Vector2 moveDirection = new Vector2(
